@@ -3,7 +3,11 @@ npm run server
 
 https://hashnode.com/post/simple-react-redux-app-civ45zywh03qdgc5327399ly0
 
+
 Try CRUD
+http://www.thegreatcodeadventure.com/react-redux-tutorial-part-ii-react-router-and-container-components/
+
+base url = https://reqres.in/api/users
 
 "users": {
     url: "users?page=2",

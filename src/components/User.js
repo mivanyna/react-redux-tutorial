@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 
-export default class User extends React.Component{
+class User extends React.Component {
   render() {
-    return (
-      <div>
-        <img src={this.props.avatar} className="avatar"/>
-        <div className="username">
-          {this.props.firstname}{this.props.lastname}
-        </div>
-      </div>
-    )  
+     return (
+          <div className="col-xs-8 col-xs-offset-2"> 
+            <h2>{this.props.user.first_name} {this.props.user.last_name}</h2>
+            <img src={this.props.user.avatar} />
+          </div>
+       )
   }
 }
+
+User.propTypes = {
+  user: PropTypes.object.isRequired
+}
+
+
+function mapStateToProps(state, ownProps) {
+  let user = {};
+  const userId = ownProps.params.id;
+  const users = state.user.users;
+  if (users.length){
+    user = Object.assign({}, users.find(user => user.id == userId))
+  }
+  return {
+    user: user
+  }
+}
+
+export default connect(mapStateToProps)(User);

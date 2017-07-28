@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router';
 
 const UserList = ({users}) => {
   return (
@@ -6,7 +7,9 @@ const UserList = ({users}) => {
       {users.map(
         user => 
           <li className="list-group-item" key={user.id}>
-            <img src={user.avatar} className="avatar"/>
+            <Link to={'/users/' + user.id}>
+                <img src={user.avatar} className="avatar"/>
+            </Link>
             {user.first_name} {user.last_name}
           </li>
       )}

@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import * as userActions from '../actions/userActions';
+import UserList from './UserList';
 
-export default class User extends React.Component{
+class User extends React.Component {
   render() {
     return (
-      <div>
-        <img src={this.props.avatar} className="avatar"/>
-        <div className="username">
-          {this.props.firstname}{this.props.lastname}
+      <div className="col-xs-12">
+        <h3>Users</h3>
+        <div className="col-xs-4">
+          <UserList users={this.props.users} />
+        </div>
+        <div className="col-xs-8">
+          {this.props.children}
         </div>
       </div>
-    )  
+    )
   }
 }
+
+User.propTypes ={
+  
+}
+
+function mapStateToProps(state, ownProps) {
+  return {
+    users: state.user.users
+  }
+}
+
+export default connect(mapStateToProps)(User);

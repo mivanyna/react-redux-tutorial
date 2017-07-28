@@ -1,13 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import {Provider} from "react-redux";
-//components
-import MainComponent from "./components/Main.js";
-import store from './store';
+import React, {PropTypes} from 'react';  
+import Header from './components/Header';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <MainComponent />    
-  </Provider>
-  ,document.getElementById("main")
-);
+class App extends React.Component {  
+  render() {
+    return (
+      <div className="container-fluid">
+        <Header />
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+App.propTypes = {  
+  children: PropTypes.object.isRequired
+};
+
+export default App;

@@ -1,27 +1,21 @@
-import React from "react";
+import React, {PropTypes} from 'react';
 
-import User from './User.js';
-export default class UserList extends React.Component{
-  render() {
-    if (this.props.users.length === 0){
-      return (<div></div>)
-    }
-    var userNodes = this.props.users.map(function(user){
-      return (
-        <User firstname={user.first_name} lastname={user.last_name}
-        key={user.id} avatar={user.avatar}>
-        {user.first_name}
-        </User>
-      )
-    })
-
-    return (
-      <div>
-        <center>
-        <h1 className="user-profile">User Profiles</h1>
-        {userNodes}
-      </center>
-      </div>
-    )
-  }
+const UserList = ({users}) => {
+  return (
+    <ul className="list-group">
+      {users.map(
+        user => 
+          <li className="list-group-item" key={user.id}>
+            <img src={user.avatar} className="avatar"/>
+            {user.first_name} {user.last_name}
+          </li>
+      )}
+    </ul>
+  )
 }
+
+UserList.propTypes = {  
+  users: PropTypes.array.isRequired
+};
+
+export default UserList;
